@@ -11,6 +11,7 @@
         rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/plane.jpg" type="image/x-icon">
 </head>
 
 <body>
@@ -50,28 +51,32 @@
             </div>
             <div class="input-group f-class">
                 <div>
-                    <label for="">First Class (<span id="first-class-total">$150</span>)</label>
+                    <label for="">First Class (<span id="first-class-ticket-total">$150</span>)</label>
                     <input id="first-class-ticket-count" value="0" class="inp-style inp-width" type="number" name="">
                 </div>
 
                 <!--test-->
 
                 <div class="plus-minus-btn">
-                    <button onclick="handlefirstclassticketcount(true)" style="padding: 3px;"> <span>+</span> </button>
-                    <button onclick="handlefirstclassticketcount(false)" style="padding: 3px;"><span>-</span></button>
+                    <button onclick="handleeconomyclassticketcount('first-class-ticket',true)" style="padding: 3px;">
+                        <span>+</span> </button>
+                    <button onclick="handleeconomyclassticketcount('first-class-ticket',false)"
+                        style="padding: 3px;"><span>-</span></button>
                     <!-- <p>+ -</p> -->
                 </div>
             </div>
 
             <div class="input-group f-class">
                 <div>
-                    <label for="">Economy (<span id="economy-class-total">$100</span>)</label>
+                    <label for="">Economy (<span id="economy-class-ticket-total">$100</span>)</label>
                     <input id="economy-class-ticket-count" value="0" class="inp-style inp-width" type="number" name="">
                 </div>
 
                 <div class="plus-minus-btn">
-                    <button onclick="handleeconomyclassticketcount(true)" style="padding: 3px;"><span>+</span></button>
-                    <button onclick="handleeconomyclassticketcount(false)" style="padding: 3px;"><span>-</span></button>
+                    <button onclick="handleeconomyclassticketcount('economy-class-ticket',true)"
+                        style="padding: 3px;"><span>+</span></button>
+                    <button onclick="handleeconomyclassticketcount('economy-class-ticket',false)"
+                        style="padding: 3px;"><span>-</span></button>
                     <!-- <p>+ -</p> -->
                 </div>
                 <!-- <div class="plus-minus-btn">
@@ -84,7 +89,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p> <span id="subtotal">$500</span> </p>
                     </div>
                 </div>
 
@@ -93,7 +98,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p><span id="tax-total">$50</span></p>
                     </div>
                 </div>
                 <hr>
@@ -102,7 +107,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p><span id="total-price">$550</span></p>
                     </div>
                 </div>
             </div>
@@ -120,12 +125,9 @@
         <!--Thank You-->
         <script>
 
-            //first class ticket increase work
-
-            function handlefirstclassticketcount(isIncrease) {
-                const ticketInput = document.getElementById('first-class-ticket-count');
+            function handleeconomyclassticketcount(ticket, isIncrease) {
+                const ticketInput = document.getElementById(ticket + '-count');
                 const ticketCount = parseInt(ticketInput.value);
-                //const ticketNewCount = ticketCount - 1;
                 let ticketNewCount = ticketCount;
                 if (isIncrease == true) {
                     ticketNewCount = ticketCount + 1;
@@ -134,29 +136,40 @@
                     ticketNewCount = ticketCount - 1;
                 }
                 ticketInput.value = ticketNewCount;
-                const ticketTotal = ticketNewCount * 150;
-                document.getElementById('first-class-total').innerText = '$' + ticketTotal;
+                let ticketTotal = 0;
+                if (ticket == 'economy-class-ticket') {
+                    ticketTotal = ticketNewCount * 100;
+                }
+                if (ticket == 'first-class-ticket') {
+                    ticketTotal = ticketNewCount * 150;
+                }
+                document.getElementById(ticket + '-total').innerText = '$' + ticketTotal;
+                calculateTotal();
+
+                //Total Calculation Sub-total,vat,GrandTotal
+
             }
 
-            //economy class work
+            function calculateTotal() {
+                const economyTicketCount = getInputValue('economy-class-ticket');
 
-            function handleeconomyclassticketcount(isIncrease) {
-                const ticketInput = document.getElementById('economy-class-ticket-count');
+                const firstClassTicketCount = getInputValue('first-class-ticket')
+
+                const totalPrice = economyTicketCount * 100 + firstClassTicketCount * 150;
+                document.getElementById('subtotal').innerText = '$' + totalPrice;
+
+                const tax = totalPrice * 0.1;
+                document.getElementById('tax-total').innerText = '$' + tax;
+
+                const grandTotal = totalPrice + tax;
+                document.getElementById('total-price').innerText = '$' + grandTotal;
+            }
+            //getinput Function
+            function getInputValue(ticket) {
+                const ticketInput = document.getElementById(ticket + '-count');
                 const ticketCount = parseInt(ticketInput.value);
-                //const ticketNewCount = ticketCount -1;
-                let ticketNewCount = ticketCount;
-                if (isIncrease == true) {
-                    ticketNewCount = ticketCount + 1;
-                }
-                if (isIncrease == false && ticketCount > 0) {
-                    ticketNewCount = ticketCount - 1;
-                }
-
-                ticketInput.value = ticketNewCount;
-                const ticketTotal = ticketNewCount * 100;
-                document.getElementById('economy-class-total').innerText = '$' + ticketTotal;
+                return ticketCount;
             }
-
         </script>
 </body>
 
