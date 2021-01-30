@@ -15,162 +15,180 @@
 </head>
 
 <body>
-    <!--Header and Menu Section-->
-    <header class="container">
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a class="active" href="#">Sign Up</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="ticket-booking-area">
+        <!--Header and Menu Section-->
+        <header class="container">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a class="active" href="#">Sign Up</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <!--Booking Section-->
-    <main class="main-content container">
-        <div class="booking-form">
-            <h3>Booking Flights</h3>
-            <div class="input-group">
-                <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
-            </div>
-            <div class="input-group">
-                <label for="">Flying To</label>
-                <input class="inp-style" type="text" name="" placeholder="New York, United States">
-            </div>
-            <div class="inputs">
+        <!--Booking Section-->
+        <main class="main-content container">
+            <div class="booking-form">
+                <h3>Booking Flights</h3>
                 <div class="input-group">
-                    <label" for="">Departure</label>
+                    <label for="">Flying From</label>
+                    <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+                </div>
+                <div class="input-group">
+                    <label for="">Flying To</label>
+                    <input class="inp-style" type="text" name="" placeholder="New York, United States">
+                </div>
+                <div class="inputs">
+                    <div class="input-group">
+                        <label" for="">Departure</label>
+                            <input class="inp-style" type="date" name="">
+                    </div>
+                    <div class="input-group">
+                        <label for="">Return</label>
                         <input class="inp-style" type="date" name="">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="">Return</label>
-                    <input class="inp-style" type="date" name="">
-                </div>
-            </div>
-            <div class="input-group f-class">
-                <div>
-                    <label for="">First Class (<span id="first-class-ticket-total">$150</span>)</label>
-                    <input id="first-class-ticket-count" value="0" class="inp-style inp-width" type="number" name="">
+                <div class="input-group f-class">
+                    <div>
+                        <label for="">First Class (<span id="first-class-ticket-total">$150</span>)</label>
+                        <input id="first-class-ticket-count" value="0" class="inp-style inp-width" type="number"
+                            name="">
+                    </div>
+
+                    <!--test-->
+
+                    <div class="plus-minus-btn">
+                        <button onclick="handleeconomyclassticketcount('first-class-ticket',true)"
+                            style="padding: 3px;">
+                            <span>+</span> </button>
+                        <button onclick="handleeconomyclassticketcount('first-class-ticket',false)"
+                            style="padding: 3px;"><span>-</span></button>
+                        <!-- <p>+ -</p> -->
+                    </div>
                 </div>
 
-                <!--test-->
+                <div class="input-group f-class">
+                    <div>
+                        <label for="">Economy (<span id="economy-class-ticket-total">$100</span>)</label>
+                        <input id="economy-class-ticket-count" value="0" class="inp-style inp-width" type="number"
+                            name="">
+                    </div>
 
-                <div class="plus-minus-btn">
-                    <button onclick="handleeconomyclassticketcount('first-class-ticket',true)" style="padding: 3px;">
-                        <span>+</span> </button>
-                    <button onclick="handleeconomyclassticketcount('first-class-ticket',false)"
-                        style="padding: 3px;"><span>-</span></button>
-                    <!-- <p>+ -</p> -->
-                </div>
-            </div>
-
-            <div class="input-group f-class">
-                <div>
-                    <label for="">Economy (<span id="economy-class-ticket-total">$100</span>)</label>
-                    <input id="economy-class-ticket-count" value="0" class="inp-style inp-width" type="number" name="">
-                </div>
-
-                <div class="plus-minus-btn">
-                    <button onclick="handleeconomyclassticketcount('economy-class-ticket',true)"
-                        style="padding: 3px;"><span>+</span></button>
-                    <button onclick="handleeconomyclassticketcount('economy-class-ticket',false)"
-                        style="padding: 3px;"><span>-</span></button>
-                    <!-- <p>+ -</p> -->
-                </div>
-                <!-- <div class="plus-minus-btn">
+                    <div class="plus-minus-btn">
+                        <button onclick="handleeconomyclassticketcount('economy-class-ticket',true)"
+                            style="padding: 3px;"><span>+</span></button>
+                        <button onclick="handleeconomyclassticketcount('economy-class-ticket',false)"
+                            style="padding: 3px;"><span>-</span></button>
+                        <!-- <p>+ -</p> -->
+                    </div>
+                    <!-- <div class="plus-minus-btn">
                     <p> <span>+</span> <span>-</span> </p>
                 </div> -->
+                </div>
+                <div class="calculations">
+                    <div class="amount">
+                        <div class="left">
+                            <p>Subtotal</p>
+                        </div>
+                        <div class="right">
+                            <p> <span id="subtotal">$500</span> </p>
+                        </div>
+                    </div>
+
+                    <div class="amount">
+                        <div class="left">
+                            <p>Charge 10% VAT</p>
+                        </div>
+                        <div class="right">
+                            <p><span id="tax-total">$50</span></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="amount">
+                        <div class="left">
+                            <h4>Total</h4>
+                        </div>
+                        <div class="right">
+                            <p><span id="total-price">$550</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button id="book-ticket" class="btn-style">Book Now</button>
             </div>
-            <div class="calculations">
-                <div class="amount">
-                    <div class="left">
-                        <p>Subtotal</p>
-                    </div>
-                    <div class="right">
-                        <p> <span id="subtotal">$500</span> </p>
-                    </div>
-                </div>
 
-                <div class="amount">
-                    <div class="left">
-                        <p>Charge 10% VAT</p>
-                    </div>
-                    <div class="right">
-                        <p><span id="tax-total">$50</span></p>
-                    </div>
-                </div>
-                <hr>
-                <div class="amount">
-                    <div class="left">
-                        <h4>Total</h4>
-                    </div>
-                    <div class="right">
-                        <p><span id="total-price">$550</span></p>
-                    </div>
-                </div>
+            <div class="booking-content">
+                <h1>discover <br> around the world</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
+                    veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt
+                    nobise
+                    voluptatibus quam</p>
             </div>
-            <button class="btn-style">Book Now</button>
-        </div>
+            </section>
 
-        <div class="booking-content">
-            <h1>discover <br> around the world</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
-                veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
-                voluptatibus quam</p>
-        </div>
-        </section>
+            <!--Thank You-->
+    </div>
+    <div id="welcome-msg">
+        <h1 class="text-center">Welcome, Your Ticket is now booked.</h1>
+        <h1 class="text-center">Please Check your Mail.</h1>
+    </div>
 
-        <!--Thank You-->
-        <script>
-
-            function handleeconomyclassticketcount(ticket, isIncrease) {
-                const ticketInput = document.getElementById(ticket + '-count');
-                const ticketCount = parseInt(ticketInput.value);
-                let ticketNewCount = ticketCount;
-                if (isIncrease == true) {
-                    ticketNewCount = ticketCount + 1;
-                }
-                if (isIncrease == false && ticketCount > 0) {
-                    ticketNewCount = ticketCount - 1;
-                }
-                ticketInput.value = ticketNewCount;
-                let ticketTotal = 0;
-                if (ticket == 'economy-class-ticket') {
-                    ticketTotal = ticketNewCount * 100;
-                }
-                if (ticket == 'first-class-ticket') {
-                    ticketTotal = ticketNewCount * 150;
-                }
-                document.getElementById(ticket + '-total').innerText = '$' + ticketTotal;
-                calculateTotal();
-
-                //Total Calculation Sub-total,vat,GrandTotal
-
+    <script>
+        function handleeconomyclassticketcount(ticket, isIncrease) {
+            const ticketInput = document.getElementById(ticket + '-count');
+            const ticketCount = parseInt(ticketInput.value);
+            let ticketNewCount = ticketCount;
+            if (isIncrease == true) {
+                ticketNewCount = ticketCount + 1;
             }
-
-            function calculateTotal() {
-                const economyTicketCount = getInputValue('economy-class-ticket');
-
-                const firstClassTicketCount = getInputValue('first-class-ticket')
-
-                const totalPrice = economyTicketCount * 100 + firstClassTicketCount * 150;
-                document.getElementById('subtotal').innerText = '$' + totalPrice;
-
-                const tax = totalPrice * 0.1;
-                document.getElementById('tax-total').innerText = '$' + tax;
-
-                const grandTotal = totalPrice + tax;
-                document.getElementById('total-price').innerText = '$' + grandTotal;
+            if (isIncrease == false && ticketCount > 0) {
+                ticketNewCount = ticketCount - 1;
             }
-            //getinput Function
-            function getInputValue(ticket) {
-                const ticketInput = document.getElementById(ticket + '-count');
-                const ticketCount = parseInt(ticketInput.value);
-                return ticketCount;
+            ticketInput.value = ticketNewCount;
+            let ticketTotal = 0;
+            if (ticket == 'economy-class-ticket') {
+                ticketTotal = ticketNewCount * 100;
             }
-        </script>
+            if (ticket == 'first-class-ticket') {
+                ticketTotal = ticketNewCount * 150;
+            }
+            document.getElementById(ticket + '-total').innerText = '$' + ticketTotal;
+            calculateTotal();
+
+            //Total Calculation Sub-total,vat,GrandTotal
+
+        }
+
+        function calculateTotal() {
+            const economyTicketCount = getInputValue('economy-class-ticket');
+
+            const firstClassTicketCount = getInputValue('first-class-ticket')
+
+            const totalPrice = economyTicketCount * 100 + firstClassTicketCount * 150;
+            document.getElementById('subtotal').innerText = '$' + totalPrice;
+
+            const tax = totalPrice * 0.1;
+            document.getElementById('tax-total').innerText = '$' + tax;
+
+            const grandTotal = totalPrice + tax;
+            document.getElementById('total-price').innerText = '$' + grandTotal;
+        }
+        //getinput Function
+        function getInputValue(ticket) {
+            const ticketInput = document.getElementById(ticket + '-count');
+            const ticketCount = parseInt(ticketInput.value);
+            return ticketCount;
+        }
+        //Book-now button work
+        const bookNowBtn = document.getElementById('book-ticket');
+        bookNowBtn.addEventListener('click', function () {
+            const ticketBookingArea = document.getElementById('ticket-booking-area');
+            ticketBookingArea.style.display = "none";
+            const WelcomeMsgArea = document.getElementById('welcome-msg');
+            WelcomeMsgArea.style.display = "block";
+        })
+    </script>
 </body>
 
 </html>

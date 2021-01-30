@@ -5,6 +5,12 @@
     text-decoration: none;
     list-style-type: none;
 }
+#welcome-msg{
+    display: none;
+    color: rgb(242, 245, 247);
+    margin: 100px;
+    padding: 50px;
+}
 body{
     font-family: 'Roboto', sans-serif;
     background:url("images/bg.png");
